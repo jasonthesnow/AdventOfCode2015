@@ -20,7 +20,6 @@ with open(puzzle_input) as f:
         line_num += 1
 
 #print("")
-# Conway's Game of Life
 
 for s in range(steps):
     new_lights = dict()
