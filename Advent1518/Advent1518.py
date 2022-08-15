@@ -27,22 +27,26 @@ for s in range(steps):
         new_lights[i] = {}
         for j in range(len(lights[i])):
             try:
-                if lights[i - 1][j - 1] == "#": lights_on += 1
+                if not (i == 0) or not (j == 0):
+                    if lights[i - 1][j - 1] == "#": lights_on += 1
             except KeyError:
                 pass
 
             try:
-                if lights[i - 1][j] == "#": lights_on += 1
+                if not (i == 0):
+                    if lights[i - 1][j] == "#": lights_on += 1
             except KeyError:
                 pass
 
             try:
-                if lights[i - 1][j + 1] == "#": lights_on += 1
+                if not (i == 0):
+                    if lights[i - 1][j + 1] == "#": lights_on += 1
             except KeyError:
                 pass
 
             try:
-                if lights[i][j - 1] == "#": lights_on += 1
+                if not (j == 0):
+                    if lights[i][j - 1] == "#": lights_on += 1
             except KeyError:
                 pass
 
@@ -52,7 +56,8 @@ for s in range(steps):
                 pass
 
             try:
-                if lights[i + 1][j - 1] == "#": lights_on += 1
+                if not (j == 0):
+                    if lights[i + 1][j - 1] == "#": lights_on += 1
             except KeyError:
                 pass
 
