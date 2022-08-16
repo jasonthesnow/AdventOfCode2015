@@ -21,6 +21,11 @@ with open(puzzle_input) as f:
 
 #print("")
 
+lights[0][0] = "#"
+lights[0][len(lights) - 1] = "#"
+lights[len(lights) - 1][0] = "#"
+lights[len(lights) - 1][len(lights) - 1] = "#"
+
 for s in range(steps):
     new_lights = dict()
     for i in range(len(lights)):
@@ -88,7 +93,10 @@ for s in range(steps):
         #print(f'{i} {new_lights[i]}')
 
     lights = new_lights
-    #print("")
+    lights[0][0] = "#"
+    lights[0][len(lights) - 1] = "#"
+    lights[len(lights) - 1][0] = "#"
+    lights[len(lights) - 1][len(lights) - 1] = "#"
 
 for i in range(len(lights)):
     for j in range(len(lights[i])):
