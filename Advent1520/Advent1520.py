@@ -1,7 +1,9 @@
 import math
+import time
 
 #This number has been entered and confirmed to be too big
 #known_big_number = 818000
+start_time = time.time()
 
 prime_numbers = [2]
 
@@ -39,7 +41,7 @@ def is_prime(n):
     else:
         return False
 
-while True:
+for i in range(10000):
     current_house += 1
 
     if is_prime(current_house):
@@ -67,6 +69,8 @@ while True:
         break
     else:
         current_gifts = 0
+
+print(time.time() - start_time)
 
 #while True:
 #    current_house += 1
