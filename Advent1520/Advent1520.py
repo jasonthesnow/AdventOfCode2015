@@ -50,18 +50,18 @@ for i in range(10000):
         continue # No need to test any of these houses
 
     tested_numbers = set()
-
-    for j in range(len(prime_numbers)):
-        if multiplicity_prime(current_house, prime_numbers[j]):
-            for k in range(2, int(current_house / 2) + 1, prime_numbers[j]): # Instead of testing every number, only testing multiples of the primes that are factors
-                if not (k in tested_numbers): # Checks to make sure not testing similar numbers (for instance 6 would be in both 2 and 3)
-                    tested_numbers.add(k)
-                    if current_house % k == 0:
-                        current_gifts += 10 * k
+    if not current_house in prime_numbers:
+        for j in range(len(prime_numbers)):
+            if multiplicity_prime(current_house, prime_numbers[j]):
+                for k in range(2, int(current_house / 2), prime_numbers[j]): # Instead of testing every number, only testing multiples of the primes that are factors
+                    if not (k in tested_numbers): # Checks to make sure not testing similar numbers (for instance 6 would be in both 2 and 3)
+                        tested_numbers.add(k)
+                        if current_house % k == 0:
+                            current_gifts += 10 * k
 
     current_gifts += (current_house * 10) + 10
 
-    print(f'House {current_house}: {current_gifts} gifts')
+    # print(f'House {current_house}: {current_gifts} gifts')
     
 
     if not (current_gifts < puzzle_input):
@@ -71,14 +71,3 @@ for i in range(10000):
         current_gifts = 0
 
 print(time.time() - start_time)
-
-#while True:
-#    current_house += 1
-#
-#
-#    if not (current_gifts < puzzle_input):
-#        print(current_house)
-#        break 
-#    else:
-#        current_gifts = 0
-#        # last_house_number = current_house_number
