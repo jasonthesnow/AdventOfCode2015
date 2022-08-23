@@ -10,6 +10,7 @@ primes = list()
 start_time = time.time()
 current_house = 0
 current_gifts = 0
+num_of_calculations = 0
 
 def is_prime(n):
     prime = True
@@ -22,17 +23,23 @@ def is_prime(n):
     else:
         return False
 
-for i in range(10):
+for i in range(10000):
     current_house += 1
+    tested = set()
 
     if not (is_prime(current_house)):
-        for j in range(1, int(current_house / 2) + 1):
-            if current_house % (j) == 0:
-                current_gifts += (j) * 10
+        for j in range(len(primes)):
+            num_of_calculations += 1
+            if current_house % primes[j] == 0:
+                for k in range(1, int(current_house / primes[j])):
+                    num_of_calculations += 1
+                    if current_house % (primes[j] * k) == 0 and (not primes[j] * k in tested):
+                        tested.add(primes[j] * k)
+                        current_gifts += primes[j] * k * 10  
     else:
         primes.append(current_house)
     
-    current_gifts += (current_house) * 10
+    current_gifts += ((current_house) * 10) + 10
 
     #print(primes)
     print(f'House {current_house}: {current_gifts} Gifts')
@@ -41,5 +48,5 @@ for i in range(10):
     current_gifts = 0
 
 
-
+print(num_of_calculations)
 print(time.time() - start_time)
